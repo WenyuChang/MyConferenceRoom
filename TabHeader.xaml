@@ -1,0 +1,16 @@
+﻿<UserControl xmlns:basics="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"  x:Class="SilverlightMuc.TabHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="Auto" Height="Auto">    
+    <Grid x:Name="LayoutRoot">       
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" x:Name="txtHeader"/>
+        <Button Grid.Column="1" Width="16" Height="16" x:Name="btnTabHeader">
+            <Image Source="img/close.png"/>
+        </Button>
+    </Grid>
+</UserControl>

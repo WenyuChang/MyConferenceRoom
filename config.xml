@@ -1,0 +1,6 @@
+﻿<rooms>
+  <room name="dev" jid="dev@conference.ag-software.de"/>
+  <room name="jdev" jid="jdev@conference.jabber.org"/>
+  <room name="jabber" jid="jabber@conference.jabber.org"/>
+  <room name="linuxcn" jid="linuxcn@conference.jabber.org"/>
+</rooms>

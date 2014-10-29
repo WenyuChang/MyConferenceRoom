@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="SilverlightMuc.ConferenceRoster"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:local="clr-namespace:SilverlightMuc"
+    Background="White"
+   >
+    <UserControl.Resources>
+        <local:StatusConverter x:Key="StatusImageConverter"/>
+        <local:RoleConverter x:Key="RoleImageConverter"/>
+        
+        <DataTemplate x:Key="tpl1">           
+            <Grid MouseEnter="Grid_MouseEnter"
+                  MouseLeave="Grid_MouseLeave"
+                  Loaded="Grid_Loaded"
+                  Background="Transparent">
+                 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="16"/>
+                    <RowDefinition Height="16"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>                    
+                </Grid.ColumnDefinitions>
+                
+                <Image Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Stretch="None" Source="{Binding Converter={StaticResource StatusImageConverter}, Path=StatusImage}" />
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" x:Name="imgAvatar" Source="{Binding Path=AvatarImage}"/>
+                <Image Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Stretch="None" Source="{Binding Converter={StaticResource RoleImageConverter}, Path=Role}" />
+                
+                <TextBlock Grid.Row="0" Grid.Column="3" FontSize="12" FontWeight="{Binding Path=FontWeight}" Text="{Binding Path=Nickname}" />
+
+                <Button Height="20" Grid.Row="0" Grid.Column="4" Content="K" ToolTipService.ToolTip="Kick" x:Name="btnKick" Visibility="Collapsed"/>
+                <Button Height="20" Grid.Row="0" Grid.Column="5" Content="B" ToolTipService.ToolTip="Ban" x:Name="btnBan" Visibility="Collapsed"/>                                   
+                
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Margin="5,0,0,0" FontSize="11" Foreground="DarkGray" Text="{Binding Path=Status}" ToolTipService.ToolTip="{Binding Path=Status}"/>
+            </Grid>            
+        </DataTemplate>          
+    </UserControl.Resources>
+   
+    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"  x:Name="listRoster" ItemTemplate="{StaticResource tpl1}" SelectionChanged="listRoster_SelectionChanged"/>    
+    
+</UserControl>

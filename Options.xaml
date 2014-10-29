@@ -1,0 +1,76 @@
+﻿<UserControl 
+    xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"           
+    xmlns:inputToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
+    xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"  xmlns:basics="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"  x:Class="SilverlightMuc.Options"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="400" Height="350">
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.RowSpan="3" Grid.Row="0" Background="#FF5B5757" CornerRadius="5" BorderBrush="Black" BorderThickness="1"/>
+
+        <TextBlock x:Name="txtTitle" Text="Options" Foreground="#FFFFFF" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+        <Border Background="White" Grid.Row="1" CornerRadius="5" Margin="5,0,5,0" BorderBrush="Black" BorderThickness="1">
+            <Grid Grid.Row="1" Margin="10,10,10,10">
+                <basics:TabControl>
+                    <basics:TabItem Header="General">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0">
+                                <Run FontWeight="Bold">Nickname:</Run>
+                            </TextBlock>
+                            <TextBox Grid.Row="1" x:Name="txtNickname"/>
+                        </Grid>
+                    </basics:TabItem>
+
+                    <basics:TabItem Header="Storage">
+                        <Grid Width="Auto" Height="Auto" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="29"/>
+                            </Grid.RowDefinitions>
+                            
+                            <StackPanel Grid.Row="0" Background="Beige">
+                                <TextBlock Text="Info Label" x:Name="txtInfo" Margin="0,2,0,0" />    
+                            </StackPanel>
+                            
+                            <chartingToolkit:Chart Grid.Row="1" x:Name="chart" >                        
+                                <chartingToolkit:Chart.Series>
+                                    <chartingToolkit:PieSeries ItemsSource="{Binding}"  
+                                                        DependentValuePath="Value" 
+                                                        IndependentValuePath="Key"
+                                                        Title="Storage" IsSelectionEnabled="True" />
+                                </chartingToolkit:Chart.Series>                                
+                            </chartingToolkit:Chart>
+                            <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right" >
+                                <inputToolkit:NumericUpDown Maximum="10" Value="3" Minimum="1" IsEditable="False" x:Name="numSpace" Margin="0,4,4,0"/>
+                                <TextBlock Text="MB" Margin="0,6,10,0" FontSize="14"/>
+                                <Button Content="request more storage" Width="180" Height="25" Click="cmdIncreaseQuota_Click" Margin="0,4,0,0"/>                               
+                            </StackPanel>
+                            
+                        </Grid>
+                    </basics:TabItem>
+                </basics:TabControl>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <Button TabIndex="0" x:Name="cmdOK" Grid.Row="0" Grid.Column="0" Content="OK" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="25" Click="cmdOK_Click" />
+        </StackPanel>
+
+        
+    </Grid>
+</UserControl>
